@@ -94,7 +94,7 @@
                         <div class="item col-3 ">
                             <div class="box_grid">
                                 <figure>
-                                    <a href="#0" class="wish_bt"></a>
+                                    <a href="#0`" class="wish_bt"></a>
                                     <a href="{{ route('package-detail.show', $package->id) }}">
                                         <img src={{ asset($package->thumbnail) }} class="img-fluid" alt=""
                                             width="800" height="533">
