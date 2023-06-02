@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Package;
 use Illuminate\Http\Request;
 
 class PackageDetailController extends Controller
@@ -45,7 +46,9 @@ class PackageDetailController extends Controller
      */
     public function show($id)
     {
-        //
+        $package = Package::find($id);
+        // dd($package);
+        return view('packagedetail', compact('package'));
     }
 
     /**

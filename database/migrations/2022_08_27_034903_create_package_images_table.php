@@ -19,7 +19,7 @@ class CreatePackageImagesTable extends Migration
             $table->string('image_url', 255)->nullable();
             $table->string('package_id')->nullable();
             // remove foreign key check, because package data store might fail
-            // $table->foreign('package_id')->references('id')->on('packages');
+            $table->foreign('package_id')->references('id')->on('packages');
             $table->timestamps();
         });
     }

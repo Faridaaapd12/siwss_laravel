@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Package;
+use App\Repositories\PackageRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -11,16 +13,46 @@ class PackagesController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */ 
-    public function index()
+     */
+
+    private $packageRepo;
+    public function __construct(PackageRepository $packageRepo)
     {
-        $packages = DB::table('packages')->get();
-        return view('welcome',['packages'=>$packages]);
+        $this->packageRepo = $packageRepo;
     }
 
-    public function packageGridIndex()
+    public function index()
     {
-        return view('packagegrid');
+        $packages = Package::all();
+
+        return view('welcome', ['packages' => $packages]);
+    }
+
+    public function packageGridIndex(Request $r)
+    {
+        $load = $r->query('load');
+        // dd(session());
+
+        if (session()->has($this->packageSession)) {
+            session()->reflash();
+            return view('packagegrid', ['packages' => session()->get($this->packageSession)]);
+        }
+
+        if (session()->has($this->homeSession)) {
+            session()->reflash();
+            return view('packagegrid', ['packages' => session()->get($this->homeSession)]);
+        }
+
+        if (session()->has($this->allPackage)) {
+            session()->reflash();
+            return view('packagegrid', ['packages' => session()->get($this->allPackage)]);
+        }
+
+        if ($load != null) {
+            return view('packagegrid', ['packages' => $this->packageRepo->packageListWithAverageRating(intval($load), "all")]);
+        } else {
+            return view('packagegrid', ['packages' => $this->packageRepo->packageListWithAverageRating(1, "all")]);
+        }
     }
     /**
      * Show the form for creating a new resource.

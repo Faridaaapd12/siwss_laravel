@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -13,17 +15,55 @@ class CartController extends Controller
      */
     public function indexCart1()
     {
-        return view('cart1');
+        $cart = new Cart();
+
+        $userId = (!empty(auth()->user())) ? auth()->user()->id : null;
+
+        if ($cart->cartData($userId)["total_price"] == 0) {
+            session()->flash('isAbleToCheckOut', "no");
+        } else {
+            session()->flash('isAbleToCheckOut', "yes");
+        }
+        return view('cart1', [
+            'carts' => $cart->cartData($userId)
+        ]);
     }
 
-    
+
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    
+
+    public function addToCart(Request $request)
+    {
+        $id = $request->input('id');
+        $textDates = $request->input('dates');
+        $from = $request->input('from');
+        $to = $request->input('to');
+        $guest = intval($request->input('guest'));
+
+        $startDay = new Carbon(explode(" > ", $textDates)[0]);
+        // $endDay = new Carbon(explode(" > ", $textDates)[1]);
+        $startTime = new Carbon($from);
+        $endTime = new Carbon($to);
+
+        $cart = new Cart();
+        $cart->package_id = $id;
+        $cart->user_id = auth()->user()->id;
+        $cart->booking_day_start = $startDay;
+        $cart->booking_day_end = null;
+        $cart->booking_time_start = $startTime;
+        $cart->booking_time_end = $endTime;
+        $cart->attendant = $guest;
+        $cart->save();
+
+        return redirect("/cart1");
+    }
+
+
     public function create()
     {
         //
