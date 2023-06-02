@@ -9,22 +9,22 @@ class Wishlist extends Model
 {
     use HasFactory;
 
-    public function room()
+    public function package()
     {
-        return $this->belongsTo(Room::class);
+        return $this->belongsTo(Package::class, 'package_id', 'id');
     }
 
-    public function guardedAdd($userId, $roomId)
+    public function guardedAdd($userId, $packageId)
     {
         $notWishlisted = $this
             ->where('user_id', $userId)
-            ->where('room_id', $roomId)
+            ->where('package_id', $packageId)
             ->get()
             ->isEmpty();
 
-        if($notWishlisted) {
+        if ($notWishlisted) {
             $this->user_id = $userId;
-            $this->room_id = $roomId;
+            $this->package_id = $packageId;
             $this->save();
         }
     }
@@ -32,50 +32,50 @@ class Wishlist extends Model
     public function wishData()
     {
         return $this::all()
-            ->map(function($wishlist, $index) {
+            ->map(function ($wishlist, $index) {
                 $wishlistId = $wishlist->id;
 
                 $thumbnail = asset($wishlist
-                    ->room
+                    ->package
                     ->images
                     ->where('thumbnail', 1)
                     ->first()
                     ->image_url);
-                
-                $roomId = $wishlist
-                    ->room_id;
 
-                $roomName = $wishlist
-                    ->room
-                    ->room_name;
+                $packageId = $wishlist
+                    ->package_id;
+
+                $packageName = $wishlist
+                    ->package
+                    ->package_name;
 
                 $description = $wishlist
-                    ->room
+                    ->package
                     ->description;
 
                 $price = $wishlist
-                    ->room
+                    ->package
                     ->price;
 
                 $averageRating = $wishlist
-                    ->room
+                    ->package
                     ->comments
-                    ->whenNotEmpty(function($comments) {
+                    ->whenNotEmpty(function ($comments) {
                         return $comments->avg('rating');
-                    }, function($comments) {
+                    }, function ($comments) {
                         return 0;
                     });
 
                 $ratingCount = $wishlist
-                    ->room
+                    ->package
                     ->comments
                     ->count();
 
                 return [
                     'id' => $wishlistId,
                     'thumbnail' => $thumbnail,
-                    'room_id' => $roomId,
-                    'room_name' => $roomName,
+                    'package_id' => $packageId,
+                    'package_name' => $packageName,
                     'description' => $description,
                     'price' => $price,
                     'rating' => $averageRating,

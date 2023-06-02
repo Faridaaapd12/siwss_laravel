@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class InvoiceController extends Controller
@@ -13,7 +15,42 @@ class InvoiceController extends Controller
      */
     public function index()
     {
-        return view('invoice');
+        session()->reflash();
+        $invoice = Cart::where('user_id', auth()->user()->id)
+            ->get()
+            ->map(function ($cart, $key) {
+                $dateStart = new Carbon($cart->booking_day_start);
+                $dateEnd = new Carbon($cart->booking_day_end);
+
+                $diff = intval($dateEnd->floatDiffInDays($dateStart));
+
+                $timeStart = new Carbon($cart->booking_time_start);
+                $timeEnd = new Carbon($cart->booking_time_end);
+
+                return [
+                    'booking_start' => $dateStart->format('l, j F'),
+                    'booking_end' => $dateEnd->format('l, j F'),
+                    'time_start' => $timeStart->format('H:i'),
+                    'time_end' => $timeEnd->format('H:i'),
+                    'attendant' => $cart->attendant,
+                    'package_name' => $cart->package->package_name,
+                    'price' => $cart->package->price * $diff
+                ];
+            })
+            ->pipe(function ($invoiceCollection) {
+                $orderDate = Carbon::now()->format('l, j F');
+                $paymentId = uniqid();
+                $totalPay = $invoiceCollection->sum('price');
+
+                return [
+                    'invoice_table' => $invoiceCollection->all(),
+                    'order_date' => $orderDate,
+                    'payment_id' => $paymentId,
+                    'total_pay' => $totalPay
+                ];
+            });
+        session()->flash('payment_id', $invoice['payment_id']);
+        return view('invoice', ['invoiceData' => $invoice]);
     }
 
     /**

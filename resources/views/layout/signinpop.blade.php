@@ -2,7 +2,7 @@
     <div class="small-dialog-header">
         <h3>Sign In</h3>
     </div>
-    <form action="{{url('/login')}}" method="POST">
+    <form action="{{ url('/login') }}" method="POST">
         @csrf
         <div class="sign-in-wrapper">
             <div class="form-group">
@@ -24,7 +24,7 @@
                 </div>
                 <div class="float-right mt-1"><a id="forgot" href="javascript:void(0);">Forgot Password?</a></div>
             </div>
-            <div class="text-center"><input type="submit" value="Log In" class="btn_1 full-width"></div>
+            <div class="text-center"><button type="submit" value="Log In" class="btn_1 full-width"><button></div>
             <div class="text-center">
                 Don’t have an account? <a href="{{ url('/register') }}">Sign up</a>
             </div>
@@ -34,7 +34,8 @@
                     <input type="email" class="form-control" name="email_forgot" id="email_forgot">
                     <i class="icon_mail_alt"></i>
                 </div>
-                <p>You will receive an email containing a link allowing you to reset your password to a new preferred one.</p>
+                <p>You will receive an email containing a link allowing you to reset your password to a new preferred
+                    one.</p>
                 <div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
             </div>
         </div>

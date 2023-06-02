@@ -26,7 +26,7 @@ class RegisterController extends Controller
         $password = $r->password;
         $confirmPassword = $r->repass;
 
-        if($password != $confirmPassword) {
+        if ($password != $confirmPassword) {
             return redirect("/register", 400);
         }
 
