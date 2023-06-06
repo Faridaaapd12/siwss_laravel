@@ -143,8 +143,10 @@
 									<li>To <span>{{$carts['to']}}</span></li>
 									<li>Guest <span>{{$carts['total_guest']}}</span></li>
 								</ul> --}}
-                                <a href="{{ url('/invoice') }}" class="btn_1 full-width purchase">Checkout</a>
-                                <div class="text-center"><small>No money charged in this step</small></div>
+   					            <button class="btn_1 full-width purchase" id="pay-button">Bayar Sekarang</button>
+
+                                {{-- <a href="{{ url('/invoice') }}" class="btn_1 full-width purchase">Checkout</a> --}}
+                                {{-- <div class="text-center"><small>No money charged in this step</small></div> --}}
                             </div>
                         </aside>
                     </div>
@@ -196,6 +198,39 @@
             form.submit();
         }
     </script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <script>
+		function backtocart() {
+			window.location.href = "{{ url('/cart1') }}"
+		}
+        const payButton = document.querySelector('#pay-button');
+        payButton.addEventListener('click', function(e) {
+            e.preventDefault();
+ 
+            snap.pay('{{ $snapToken }}', {
+                // Optional
+                onSuccess: function(result) {
+                    
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                },
+                // Optional
+                onPending: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                },
+                // Optional
+                onError: function(result) {
+                    /* You may add your own js here, this is just example */
+                    // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                    console.log(result)
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

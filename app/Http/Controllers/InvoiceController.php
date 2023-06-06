@@ -6,6 +6,7 @@ use App\Models\Cart;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
+
 class InvoiceController extends Controller
 {
     /**
@@ -26,7 +27,7 @@ class InvoiceController extends Controller
 
                 $timeStart = new Carbon($cart->booking_time_start);
                 $timeEnd = new Carbon($cart->booking_time_end);
-
+                
                 return [
                     'booking_start' => $dateStart->format('l, j F'),
                     'booking_end' => $dateEnd->format('l, j F'),
@@ -41,7 +42,7 @@ class InvoiceController extends Controller
                 $orderDate = Carbon::now()->format('l, j F');
                 $paymentId = uniqid();
                 $totalPay = $invoiceCollection->sum('price');
-
+                
                 return [
                     'invoice_table' => $invoiceCollection->all(),
                     'order_date' => $orderDate,
@@ -49,8 +50,14 @@ class InvoiceController extends Controller
                     'total_pay' => $totalPay
                 ];
             });
+        // dd($invoice);
         session()->flash('payment_id', $invoice['payment_id']);
         return view('invoice', ['invoiceData' => $invoice]);
+    }
+
+    public function checkout()
+    {
+        # code...
     }
 
     /**

@@ -228,11 +228,8 @@ tr:hover .cut { opacity: 1; }
 				</tr>
 				<tr>
 					<th class="back" onclick="backtocart()">kembali</th>
-					<td class="checkout" onclick="gotoinvoice()">
-						<form action="{{ url('/checkout') }}" method="post" id="bayar">
-							@csrf
-							<span>Bayar</span>
-						</form>
+					<td>
+   					 <button class="btn btn-primary" id="pay-button">Bayar Sekarang</button>
 					</td>
 				</tr>
 			</table>
@@ -241,14 +238,15 @@ tr:hover .cut { opacity: 1; }
 </html>
 
 <script>
-	function backtocart() {
-		window.location.href = "{{ url('/cart1') }}"
-	}
+
 
 	function gotoinvoice() {
 		let form = document.getElementById("bayar")
 		form.submit()
 	}
+
+
 </script>
+
 </body>
 </html>

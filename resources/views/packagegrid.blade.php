@@ -143,7 +143,7 @@
                                                 onclick="wishlist('{{ $package['id'] }}')"></a>
                                         @endguest
                                         <a href="{{ asset('/package/' . $package['id']) }}"><img
-                                                src="{{ asset($package['image']) }}" class="img-fluid"
+                                                src="{{ asset($package['image']); }}" class="img-fluid"
                                                 alt="" width="800" height="533">
                                             <div class="read_more"><span>Read more</span></div>
                                         </a>

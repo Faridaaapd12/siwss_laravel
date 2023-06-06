@@ -89,14 +89,14 @@
 
                 <div id="reccomended" class="row">
 
-
+                    
                     @foreach ($packages as $package)
                         <div class="item col-3 ">
                             <div class="box_grid">
                                 <figure>
                                     <a href="#0`" class="wish_bt"></a>
                                     <a href="{{ route('package-detail.show', $package->id) }}">
-                                        <img src={{ asset($package->thumbnail) }} class="img-fluid" alt=""
+                                        <img src={{ ($package->image_url) }} class="img-fluid" alt=""
                                             width="800" height="533">
                                         <div class="read_more"><span>Lihat Detail</span>
                                         </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use App\Services\Midtrans\CreateSnapTokenService; 
 class CartController extends Controller
 {
     /**
@@ -15,17 +15,25 @@ class CartController extends Controller
      */
     public function indexCart1()
     {
-        $cart = new Cart();
-
+        
         $userId = (!empty(auth()->user())) ? auth()->user()->id : null;
+        $cart = new Cart();
+        $cartData = $cart->cartData($userId);
+        
+        $midtrans = new CreateSnapTokenService($cartData['total_price']);
+        $snapToken = $midtrans->getSnapToken();
+
+        
 
         if ($cart->cartData($userId)["total_price"] == 0) {
             session()->flash('isAbleToCheckOut', "no");
         } else {
             session()->flash('isAbleToCheckOut', "yes");
         }
+        // dd($snapToken);
         return view('cart1', [
-            'carts' => $cart->cartData($userId)
+            'carts' => $cart->cartData($userId),
+            'snapToken' => $snapToken
         ]);
     }
 
