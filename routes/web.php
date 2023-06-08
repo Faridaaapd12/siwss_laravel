@@ -34,7 +34,6 @@ Route::get('/register', [RegisterController::class, 'index']);
 Route::post('/register', [RegisterController::class, 'register']);
 
 
-
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('auth');
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -60,6 +59,7 @@ Route::get('/cart1', [CartController::class, 'indexCart1']);
 Route::get('/cart3', [CartController::class, 'indexCart3'])->middleware('auth')->middleware('cart');
 Route::get('/invoice', [InvoiceController::class, 'index']);
 Route::post('/cart/add', [CartController::class, 'addToCart'])->middleware('auth');
+Route::delete('/cart1/delete/{id}', [CartController::class, 'deleteCartItem']);
 
 Route::get('/wishlist', [WishlistController::class, 'index']);
 Route::post('/wishlist/add', [WishlistController::class, 'add'])->middleware('auth');

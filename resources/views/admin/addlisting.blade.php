@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Ansonika">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>PANAGEA - Admin dashboard</title>
+    <title>SIWSS - Admin dashboard</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -65,7 +65,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Room Name</label>
+                                <label>Nama Paket</label>
                                 <input type="text" class="form-control" name="name" value="{{ old('name') }}">
                                 @error('name')
                                     <small class="text-danger">
@@ -80,7 +80,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>Deskripsi Paket</label>
                                 <textarea name="description" class="form-control">{{ old('description') }}</textarea>
                                 @error('description')
                                     <small class="text-danger">
@@ -95,7 +95,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Max People</label>
+                                <label>Kapasitas Orang</label>
                                 <input type="number" class="form-control" name="maxpeople" min="1"
                                     value="{{ old('maxpeople') }}">
                                 @error('maxpeople')
@@ -155,7 +155,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Photos</label>
+                                <label>Foto</label>
                                 <input type="file" class="form-control" name="photos[]" multiple
                                     value="{{ old('photos') }}">
                                 @error('photos')
@@ -172,13 +172,13 @@
 
                 <div class="box_general padding_bottom">
                     <div class="header_box version_2">
-                        <h2><i class="fa fa-map-marker"></i>Location</h2>
+                        <h2><i class="fa fa-map-marker"></i>Lokasi</h2>
                     </div>
                     <!-- /row-->
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Address</label>
+                                <label>Alamat</label>
                                 <textarea type="text" class="form-control" name="location">{{ old('location') }}</textarea>
                                 @error('location')
                                     <small class="text-danger">
@@ -503,7 +503,7 @@
 
                 <div class="box_general padding_bottom">
                     <div class="header_box version_2">
-                        <h2><i class="fa fa-dollar"></i>Pricing</h2>
+                        <h2><i class="fa fa-dollar"></i>Harga</h2>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
@@ -525,7 +525,7 @@
                     <!-- /row-->
                 </div>
                 <!-- /box_general-->
-                <button class="btn_1 medium" type="submit">Save</button>
+                <button class="btn_1 medium" type="submit">Simpan</button>
             </form>
         </div>
         <!-- /.container-fluid-->
@@ -534,7 +534,7 @@
     <footer class="sticky-footer">
         <div class="container">
             <div class="text-center">
-                <small>Copyright © PANAGEA 2018</small>
+                <small>Sistem Informasi Wisata Susur Sungai</small>
             </div>
         </div>
     </footer>

@@ -91,10 +91,9 @@ class PackageController extends Controller
             'name' => 'required',
             'description' => 'required',
             'location' => 'required',
-            'maxpeople' => 'required',
             'price' => 'required',
-            'thumbnail' => 'image|mimes:jpg,jpeg,png|max:2048',
-            'photos.*' => 'image|mimes:jpg,jpeg,png|max:2048',
+            'thumbnail' => 'image|mimes:jpg,jpeg,png',
+            'photos.*' => 'image|mimes:jpg,jpeg,png',
         ]);
         try {
             $id = uniqid();
@@ -104,7 +103,6 @@ class PackageController extends Controller
             $package->description = $r->input('description');
             $package->location = $r->input('location');
             $package->price = $r->input('price');
-            $package->maxpeople = $r->input('maxpeople');
             $package->save();
             $package->fresh();
             if ($package->count() > 0) {

@@ -27,12 +27,17 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/vendors.css') }}" rel="stylesheet">
-
+    <!-- Basic stylesheet -->
+{{-- <link rel="stylesheet" href="owl-carousel/owl.carousel.css"> --}}
+ 
+<!-- Default Theme -->
+{{-- <link rel="stylesheet" href="owl-carousel/owl.theme.css"> --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/assets/owl.carousel.min.css">
     <!-- YOUR CUSTOM CSS -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <style>
         .hero_single.version_2:before {
-            background: url({{ asset('img/Siwss.jpg') }}) center center no-repeat;
+            background: url({{ asset('img/Perahu.jpg') }}) center center no-repeat;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -87,29 +92,39 @@
                     <p>Berbagai jenis paket yang bisa Anda pilih.</p>
                 </div>
 
-                <div id="reccomended" class="row">
-
-                    
-                    @foreach ($packages as $package)
-                        <div class="item col-3 ">
+                <div id="reccomended" class="owl-carousel owl-theme owl-loaded owl-drag">
+                    @foreach  ($packages as $package)
+                        <div class="item ">
                             <div class="box_grid">
                                 <figure>
-                                    <a href="#0`" class="wish_bt"></a>
-                                    <a href="{{ route('package-detail.show', $package->id) }}">
-                                        <img src={{ ($package->image_url) }} class="img-fluid" alt=""
-                                            width="800" height="533">
+                                    @auth
+                                            @if ($package['wishlisted'])
+                                                <a href="#0" class="wish_bt liked"
+                                                    onclick="unwishlist('{{ $package['wishlistId'] }}')"></a>
+                                            @else
+                                                <a href="#0" class="wish_bt"
+                                                    onclick="wishlist('{{ $package['id'] }}')"></a>
+                                            @endif
+                                        @endauth
+                                        @guest
+                                            <a href="#0" class="wish_bt"
+                                                onclick="wishlist('{{ $package['id'] }}')"></a>
+                                        @endguest
+                                    <a href="{{ route('package-detail.show', $package['id']) }}">
+                                        <img src="{{ $package['image']; }}" class="img-fluid" alt=""
+                                            >
                                         <div class="read_more"><span>Lihat Detail</span>
                                         </div>
                                     </a>
                                 </figure>
                                 <div class="wrapper">
-                                    <h3><a href="{{ route('package-detail') }}">{{ $package->package_name }}</a></h3>
-                                    <p>{{ $package->description }}</p>
-                                    <span class="price">Mulai <strong>Rp {{ $package->price }}</strong> /per
-                                        paket</span>
+                                    <h3><a href="{{ route('package-detail') }}">{{ $package['package_name'] }}</a></h3>
+                                    <p>{{ $package['description'] }}</p>
+                                    <span class="price"> <strong>Rp {{ $package['price'] }}</strong> /per
+                                        Orang</span>
                                 </div>
                                 <ul>
-                                    <li><i class="icon_clock_alt"></i> {{ $package->maxpeople }} Orang</li>
+                                    <li><i class="icon_clock_alt"></i> </li>
                                     <li>
                                         <div class="score"><span>Menyenangkan<em>350
                                                     Reviews</em></span><strong>4.9</strong>
@@ -119,19 +134,12 @@
                             </div>
                         </div>
                     @endforeach
-
-
-
-
-
-
-
-
                 </div>
-
-                <p class="btn_home_align"><a href="{{ url('/packages/grid') }}" class="btn_1 rounded">Lihat Semua
+				<!-- /carousel -->
+				<p class="btn_home_align"><a href="{{ url('/packages/grid') }}" class="btn_1 rounded">Lihat Semua
                         Paket</a></p>
-
+				{{-- some random line --}}
+				{{-- <hr class="large"> --}}
             </div>
 
             <div class="container margin_60_35">
@@ -149,7 +157,7 @@
                                     <div class="caption-content">
                                         <a href="img/warung.jpg" title="Photo title" data-effect="mfp-zoom-in">
                                             <i class="pe-7s-albums"></i>
-                                            <p>Keterangan</p>
+                                            <p>Lihat</p>
                                         </a>
                                     </div>
                                 </figcaption>
@@ -162,7 +170,7 @@
                                     <div class="caption-content">
                                         <a href="img/peresmian.jpg" title="Photo title" data-effect="mfp-zoom-in">
                                             <i class="pe-7s-albums"></i>
-                                            <p>Keterangan</p>
+                                            <p>Lihat</p>
                                         </a>
                                     </div>
                                 </figcaption>
@@ -175,7 +183,7 @@
                                     <div class="caption-content">
                                         <a href="img/Pemancingan.jpg" title="Photo title" data-effect="mfp-zoom-in">
                                             <i class="pe-7s-albums"></i>
-                                            <p>Keterangan</p>
+                                            <p>Lihat</p>
                                         </a>
                                     </div>
                                 </figcaption>
@@ -188,7 +196,7 @@
                                     <div class="caption-content">
                                         <a href="img/PetikLaut.jpg" title="Photo title" data-effect="mfp-zoom-in">
                                             <i class="pe-7s-albums"></i>
-                                            <p>Keterangan</p>
+                                            <p>Lihat</p>
                                         </a>
                                     </div>
                                 </figcaption>
@@ -201,7 +209,7 @@
                                     <div class="caption-content">
                                         <a href="img/Religi.jpg" title="Photo title" data-effect="mfp-zoom-in">
                                             <i class="pe-7s-albums"></i>
-                                            <p>Keterangan</p>
+                                            <p>Lihat</p>
                                         </a>
                                     </div>
                                 </figcaption>
@@ -215,7 +223,7 @@
                                         <a href="img/cafe kalitekung.jpg" title="Photo title"
                                             data-effect="mfp-zoom-in">
                                             <i class="pe-7s-albums"></i>
-                                            <p>Keterangan</p>
+                                            <p>KLihat</p>
                                         </a>
                                     </div>
                                 </figcaption>
@@ -289,7 +297,21 @@
         }
     </script>
 
+    
+<!-- You can use latest version of jQuery  -->
+/* <script src="jquery-1.9.1.min.js"></script> */
+<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>     
+<script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
+<!-- Include js plugin -->
+/* <script src="assets/owl-carousel/owl.carousel.js"></script> */
 
+<script>
+    $(document).ready(function() {
+ 
+ $(".owl-carousel").owlCarousel();
+
+});
+    </script>
 </body>
 
 </html>

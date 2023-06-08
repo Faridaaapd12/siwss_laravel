@@ -8,7 +8,7 @@
     <meta name="description"
         content="Panagea - Premium site template for travel agencies, hotels and restaurant listing.">
     <meta name="author" content="Ansonika">
-    <title>Panagea | Premium site template for travel agencies, hotels and restaurant listing.</title>
+    <title>SIWSS -Detail Paket.</title>
 
     <!-- Favicons-->
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
@@ -52,9 +52,9 @@
         <header class="header menu_fixed">
             <div id="logo">
                 <a href="{{ url('/') }}">
-                    <img src="{{ asset('img/Logo-Graha-Meeting-Putih.png') }}" width="120" height="36"
+                    <img src="{{ asset('img/Logo_SIWSS_1.png') }}" width="120" height="36"
                         alt="" class="logo_normal">
-                    <img src="{{ asset('img/Logo-Graha-Meeting-Hitam.png') }}" width="120" height="36"
+                    <img src="{{ asset('img/Logo_SIWSS.png') }}" width="120" height="36"
                         alt="" class="logo_sticky">
                 </a>
             </div>
@@ -98,8 +98,8 @@
             </a>
             <nav id="menu" class="main-menu">
                 <ul>
-                    <li><span><a href="{{ url('/') }}">Home</a></span></li>
-                    <li><span><a href="{{ url('/packages/grid') }}">Package</a></span>
+                    <li><span><a href="{{ url('/') }}">Beranda</a></span></li>
+                    <li><span><a href="{{ url('/packages/grid') }}">Paket</a></span>
                 </ul>
             </nav>
 
@@ -110,13 +110,13 @@
             <section class="hero_in tours_detail">
                 <div class="wrapper">
                     <div class="container">
-                        <h1 class="fadeInUp"><span></span>Tour detail page</h1>
+                        <h1 class="fadeInUp"><span></span>DETAIL PAKET</h1>
                     </div>
                     <span class="magnific-gallery">
                         @foreach ($package->images as $image)
                             @if ($loop->first)
                                 <a href="{{ asset($image->image_url) }}" class="btn_photos"
-                                    title="image {{ $loop->index + 1 }}" data-effect="mfp-zoom-in">View photos</a>
+                                    title="image {{ $loop->index + 1 }}" data-effect="mfp-zoom-in">Lihat Foto</a>
                             @else
                                 <a href="{{ asset($image->image_url) }}" title="image {{ $loop->index + 1 }}"
                                     data-effect="mfp-zoom-in"></a>
@@ -131,8 +131,8 @@
                 <nav class="secondary_nav sticky_horizontal">
                     <div class="container">
                         <ul class="clearfix">
-                            <li><a href="#description" class="active">Description</a></li>
-                            <li><a href="#reviews">Reviews</a></li>
+                            <li><a href="#description" class="active">Deskripsi</a></li>
+                            <li><a href="#reviews">Ulasan</a></li>
                             <li><a href="#sidebar">Booking</a></li>
                         </ul>
                     </div>
@@ -141,7 +141,7 @@
                     <div class="row">
                         <div class="col-lg-8">
                             <section id="description">
-                                <h2>Description</h2>
+                                <h2>Deskripsi</h2>
                                 <p>{{ $package['description'] }}</p>
                             </section>
                             <!-- /section -->
@@ -313,45 +313,39 @@
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $package['id'] }}">
                                     <div class="price">
-                                        <span>Rp.{{ $package['price'] }}<small>/hari</small></span>
+                                        <span>Rp.{{ $package['price'] }}<small></small></span>
                                         {{-- <div class="score"><span>Good<em>{{ $package['ratingCount'] }}
                                                     Reviews</em></span><strong>{{ $package['averageRating'] }}</strong>
                                         </div> --}}
                                     </div>
                                     <div class="form-group input-dates">
                                         <input class="form-control" type="text" name="dates"
-                                            placeholder="When..">
+                                            placeholder="Tanggal">
                                         <i class="icon_calendar"></i>
                                     </div>
                                     <div class="row">
                                         <div class="form-group col-6">
                                             <input type="text" class="form-control" name="from" id="from"
-                                                placeholder="From">
+                                                placeholder="Dari Jam">
                                             <i class="icon_clock time-input-group"></i>
                                         </div>
                                         <div class="form-group col-6">
                                             <input type="text" class="form-control" name="to" id="to"
-                                                placeholder="To">
+                                                placeholder="Hingga Jam">
                                             <i class="icon_clock time-input-group"></i>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="number" name="guest" min="1"
-                                            placeholder="Guest (max {{ $package['maxpeople'] }})"
-                                            max="{{ $package['maxpeople'] }}" class="form-control">
-                                    </div>
-                                    <button class="btn_1 full-width purchase">Purchase</button>
+                                    <button class="btn_1 full-width purchase">Bayar</button>
                                     <a href="#0" class="btn_1 full-width outline wishlist"
-                                        onclick="wishlist('{{ $package['id'] }}')"><i class="icon_heart"></i> Add to
-                                        wishlist</a>
-                                    <div class="text-center"><small>No money charged in this step</small></div>
+                                        onclick="wishlist('{{ $package['id'] }}')"><i class="icon_heart"></i> Favorit</a>
+                                    <div class="text-center"><small>Tidak ada uang yang dibebankan pada langkah ini</small></div>
                                 </form>
                             </div>
                             <ul class="share-buttons">
                                 <li><a class="fb-share" href="#0"><i class="social_facebook"></i> Share</a></li>
                                 <li><a class="twitter-share" href="#0"><i class="social_twitter"></i> Tweet</a>
                                 </li>
-                                <li><a class="gplus-share" href="#0"><i class="social_googleplus"></i> Share</a>
+                                <li><a class="gplus-share" href="#0"><i class="social_googleplus"></i> Google</a>
                                 </li>
                             </ul>
                         </aside>

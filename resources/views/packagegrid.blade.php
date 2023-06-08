@@ -59,25 +59,6 @@
                 <div class="container">
                     <ul class="clearfix">
                         <li>
-                            <div class="type-filter">
-                                <a href="{{ url('/packages/sort/all') }}">
-                                    <p>Semua</p>
-                                </a>
-                                <a href="{{ url('/packages/sort/popular') }}">
-                                    <p>Populer</p>
-                                </a>
-                                <a href="{{ url('/packages/sort/latest') }}">
-                                    <p>Terbaru</p>
-                                </a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="layout_view">
-                                <a href="{{ url('packages/grid') }}" class="active"><i class="icon-th"></i></a>
-                                <a href="{{ url('packages/list') }}"><i class="icon-th-list"></i></a>
-                            </div>
-                        </li>
-                        <li>
                             {{-- preserve for layout --}}
                         </li>
                     </ul>
@@ -97,26 +78,22 @@
                     <div class="row no-gutters custom-search-input-2 inner">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Nama Ruangan"
+                                <input class="form-control" type="text" placeholder="Nama Paket"
                                     name="packageName">
                                 <i class="icon_search"></i>
                             </div>
                         </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <input class="form-control" type="text" placeholder="Lantai" name="location">
-                                <i class="icon_pin_alt"></i>
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
+                        
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <input type="number" name="maxpeople" class="form-control" min="1"
-                                    placeholder="Jumlah Tamu">
+                                    placeholder="Kapasitas Orang">
                                 <i class="icon_profile"></i>
                             </div>
                         </div>
-                        <div class="col-lg-2">
-                            <input type="submit" class="btn_search" value="Search">
+                        <div class="col-lg-4">
+                            <input type="submit" class="btn_search" value="Cari
+                            ">
                         </div>
                     </div>
                     <!-- /row -->
@@ -145,7 +122,7 @@
                                         <a href="{{ asset('/package/' . $package['id']) }}"><img
                                                 src="{{ asset($package['image']); }}" class="img-fluid"
                                                 alt="" width="800" height="533">
-                                            <div class="read_more"><span>Read more</span></div>
+                                            <div class="read_more"><span>Lihat Detail</span></div>
                                         </a>
                                     </figure>
                                     <div class="wrapper">
@@ -154,13 +131,13 @@
                                         </h3>
                                         <p>{{ $package['description'] }}</p>
                                         <span class="price">Rp.<strong>{{ $package['price'] }}</strong> /per
-                                            orang</span>
+                                            Orang</span>
                                     </div>
                                     <ul>
                                         <li></li>
                                         <li>
                                             <div class="score"><span>Superb<em>{{ $package['ratingCount'] }}
-                                                        Reviews</em></span><strong>{{ $package['rating'] }}</strong>
+                                                        Ulasan</em></span><strong>{{ $package['rating'] }}</strong>
                                             </div>
                                         </li>
                                     </ul>
@@ -176,39 +153,6 @@
 
             </div>
             <!-- /container -->
-
-            <div class="bg_color_1">
-                {{--
-				<div class="container margin_60_35">
-					<div class="row">
-						<div class="col-md-4">
-							<a href="#0" class="boxed_list">
-								<i class="pe-7s-help2"></i>
-								<h4>Need Help? Contact us</h4>
-								<p>Cum appareat maiestatis interpretaris et, et sit.</p>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="#0" class="boxed_list">
-								<i class="pe-7s-wallet"></i>
-								<h4>Payments</h4>
-								<p>Qui ea nemore eruditi, magna prima possit eu mei.</p>
-							</a>
-						</div>
-						<div class="col-md-4">
-							<a href="#0" class="boxed_list">
-								<i class="pe-7s-note2"></i>
-								<h4>Cancel Policy</h4>
-								<p>Hinc vituperata sed ut, pro laudem nonumes ex.</p>
-							</a>
-						</div>
-					</div>
-					<!-- /row -->
-				</div>
-				--}}
-                <!-- /container -->
-            </div>
-            <!-- /bg_color_1 -->
 
         </main>
         <!--/main-->

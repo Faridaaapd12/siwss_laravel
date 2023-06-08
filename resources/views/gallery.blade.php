@@ -52,7 +52,7 @@
 			</div>
 			<div class="grid">
 				<ul class="magnific-gallery">
-					<li>
+					<li style="margin: 20px">
 						<figure>
 							<img src="img/warung.jpg" alt="">
 							<figcaption>
@@ -65,7 +65,7 @@
 							</figcaption>
 						</figure>
 					</li>
-					<li>
+					<li style="margin: 20px">
 						<figure>
 							<img src="img/peresmian.jpg" alt="">
 							<figcaption>
@@ -78,7 +78,7 @@
 							</figcaption>
 						</figure>
 					</li>
-					<li>
+					<li style="margin: 20px">
 						<figure>
 							<img src="img/Pemancingan.jpg" alt="">
 							<figcaption>
@@ -91,7 +91,7 @@
 							</figcaption>
 						</figure>
 					</li>
-					<li>
+					<li style="margin: 20px">
 						<figure>
 							<img src="img/PetikLaut.jpg" alt="">
 							<figcaption>
@@ -104,7 +104,7 @@
 							</figcaption>
 						</figure>
 					</li>
-                    <li>
+                    <li style="margin: 20px">
 						<figure>
 							<img src="img/Religi.jpg" alt="">
 							<figcaption>
@@ -117,7 +117,7 @@
 							</figcaption>
 						</figure>
 					</li>
-                    <li>
+                    <li style="margin: 20px">
 						<figure>
 							<img src="img/kalitekung.jpg" alt="">
 							<figcaption>
@@ -145,7 +145,7 @@
 				</div>
 				<div class="grid">
 					<ul class="magnific-gallery">
-						<li>
+						<li style="margin: 20px">
 							<figure>
 								{{-- <img src="img/gallery/large/pic_4.jpg" alt=""> --}}
 								<iframe width="560" height="315" src="https://www.youtube.com/embed/8pNklGSRNzQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -160,7 +160,7 @@
 							</figure>
 						</li>
 				
-						<li>
+						<li style="margin: 20px">
 							<figure>
 								{{-- <img src="img/gallery/large/pic_5.jpg" alt=""> --}}
 								<iframe width="560" height="315" src="https://www.youtube.com/embed/ssbQwdCWbUg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
@@ -176,7 +176,7 @@
 								
 							</figure>
 						</li>
-						<li>
+						<li style="margin: 20px">
 							<figure>
 								{{-- <img src="img/gallery/large/pic_3.jpg" alt=""> --}}
 								<iframe width="560" height="315" src="https://www.youtube.com/embed/YtKAZ6Zq7iQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
