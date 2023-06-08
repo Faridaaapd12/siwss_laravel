@@ -21,11 +21,34 @@ class PackagesController extends Controller
         $this->packageRepo = $packageRepo;
     }
 
-    public function index()
+    public function index(Request $r)
     {
-        $packages = Package::all();
+        $load = $r->query('load');
+        // dd(session());
 
-        return view('welcome', ['packages' => $packages]);
+        if (session()->has($this->packageSession)) {
+            session()->reflash();
+            return view('welcome', ['packages' => session()->get($this->packageSession)]);
+        }
+
+        if (session()->has($this->homeSession)) {
+            session()->reflash();
+            return view('welcome', ['packages' => session()->get($this->homeSession)]);
+        }
+
+        if (session()->has($this->allPackage)) {
+            session()->reflash();
+            return view('welcome', ['packages' => session()->get($this->allPackage)]);
+        }
+
+        if ($load != null) {
+            return view('welcome', ['packages' => $this->packageRepo->packageListWithAverageRating(intval($load), "all")]);
+        } else {
+            return view('welcome', ['packages' => $this->packageRepo->packageListWithAverageRating(1, "all")]);
+        }
+        // dd($packages);
+
+        // return view('welcome', ['packages' => $packagesjoin]);
     }
 
     public function packageGridIndex(Request $r)

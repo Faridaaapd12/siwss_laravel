@@ -68,14 +68,14 @@ class CallbackService extends Midtrans
 
 
  
-    protected function _handleNotification()
-    {
-        $notification = new Notification();
+    // protected function _handleNotification()
+    // {
+    //     $notification = new Notification();
  
-        $orderNumber = $notification->order_id;
-        $order = Order::where('number', $orderNumber)->first();
+    //     $orderNumber = $notification->order_id;
+    //     $order = Order::where('number', $orderNumber)->first();
  
-        $this->notification = $notification;
-        $this->order = $order;
-    }
+    //     $this->notification = $notification;
+    //     $this->order = $order;
+    // }
 }

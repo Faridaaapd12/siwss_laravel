@@ -80,9 +80,13 @@ class CartController extends Controller
     }
 
 
-    public function create()
+    public function deleteCartItem(Request $request, $id)
     {
-        //
+        $cart = Cart::find(intval($id));
+
+        $cart->delete();
+
+        return redirect('/cart1');
     }
 
     /**

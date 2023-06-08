@@ -7,9 +7,9 @@ use App\Repositories\SearchRepository;
 
 class SearchController extends Controller
 {
-    private $searchRepo;
+    private $searchRepo; //SearchReporsitoryInterface 
 
-    public function __construct(SearchRepository $searchRepo)
+    public function __construct(SearchRepository $searchRepo) //SearchReporsitoryInterface
     {
         $this->searchRepo = $searchRepo;
     }

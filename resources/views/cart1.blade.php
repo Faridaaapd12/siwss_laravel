@@ -82,13 +82,13 @@
                                     <thead>
                                         <tr>
                                             <th>
-                                                Item
+                                                Pesanan
                                             </th>
                                             <th>
-                                                Price
+                                                Harga
                                             </th>
                                             <th>
-                                                Actions
+                                                Opsi
                                             </th>
                                         </tr>
                                     </thead>
@@ -102,12 +102,10 @@
                                                     <span class="item_cart">{{ $cart['package_name'] }}</span>
                                                 </td>
                                                 <td>
-                                                    <strong>Rp.{{ $cart['price'] }}</strong>
+                                                    <strong>Rp. {{ $cart['price'] }}</strong>
                                                 </td>
                                                 <td class="options" style="width:5%; text-align:center;">
-                                                    <a href="#0"
-                                                        onclick="deletecart('{{ url('/cart/delete/' . $cart['id']) }}')"><i
-                                                            class="icon-trash"></i></a>
+                                                    <a href="#0" onclick="deletecart('{{ url('/cart1/delete/' . $cart['id']) }}')"><i class="icon-trash"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
