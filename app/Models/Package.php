@@ -9,7 +9,7 @@ class Package extends Model
 {
     use HasFactory;
     protected $table = 'packages';
-    // protected $primaryKey = 'id';
+    protected $primaryKey = 'id';
     protected $keyType = 'string';
     public $incrementing = false;
     protected $appends = [

@@ -143,7 +143,7 @@
 									<li>To <span>{{$carts['to']}}</span></li>
 									<li>Guest <span>{{$carts['total_guest']}}</span></li>
 								</ul> --}}
-   					            <button class="btn_1 full-width purchase" id="pay-button">Bayar Sekarang</button>
+                                <button class="btn_1 full-width purchase" id="pay-button">Bayar Sekarang</button>
 
                                 {{-- <a href="{{ url('/invoice') }}" class="btn_1 full-width purchase">Checkout</a> --}}
                                 {{-- <div class="text-center"><small>No money charged in this step</small></div> --}}
@@ -198,19 +198,21 @@
             form.submit();
         }
     </script>
-    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+    </script>
     <script>
-		function backtocart() {
-			window.location.href = "{{ url('/cart1') }}"
-		}
+        function backtocart() {
+            window.location.href = "{{ url('/cart1') }}"
+        }
         const payButton = document.querySelector('#pay-button');
+
         payButton.addEventListener('click', function(e) {
             e.preventDefault();
- 
+
             snap.pay('{{ $snapToken }}', {
                 // Optional
                 onSuccess: function(result) {
-                    
+
                     /* You may add your own js here, this is just example */
                     // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                     console.log(result)
@@ -220,6 +222,21 @@
                     /* You may add your own js here, this is just example */
                     // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
                     console.log(result)
+                    //send ajax to apiTransaction
+                    $.ajax({
+                        url: "{{ url('/api/transaction/' . $userId) }}",
+                        type: "POST",
+                        data: result,
+                        success: function(resultTransaction) {
+                            console.log(resultTransaction)
+                            window.location.href = "{{ url('/invoice') }}"
+                        },
+                        error: function(resultTransaction) {
+                            console.log(resultTransaction)
+                        }
+                    });
+
+
                 },
                 // Optional
                 onError: function(result) {
