@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-              $table->string('phone_number');
+        Schema::table('bookings', function (Blueprint $table) {
+            $table->integer('quantity');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->dropColumn('phone_number');
-      });
+        Schema::table('bookings', function (Blueprint $table) {
+            //
+        });
     }
 };

@@ -54,9 +54,10 @@ class InvoiceController extends Controller
         //         ];
         //     });
 
-
+ 
         $invoice = Order::where('user_id', auth()->user()->id)
             // ->join('bookings', 'bookings.order_id', '=', 'orders.id')
+            // ->join('packages', 'packages.id', '=', 'bookings.package_id')
             ->get()
             ->map(function ($booking, $key) {
                 $dateStart = new Carbon($booking->booking_day_start);
@@ -90,7 +91,7 @@ class InvoiceController extends Controller
                 ];
             });
 
-        dd($invoice);
+       
         session()->flash('payment_id', $invoice['payment_id']);
         return view('invoice', ['invoiceData' => $invoice]);
     }

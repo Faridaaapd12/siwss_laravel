@@ -56,6 +56,12 @@ class Cart extends Model
                 $guest = $item
                     ->attendant;
 
+                $quantity = $item
+                    ->quantity;
+
+                $package_id = $item
+                    ->package_id;
+
                 $bookingDateStart = new Carbon($item
                     ->booking_day_start);
 
@@ -70,8 +76,11 @@ class Cart extends Model
                     'image_icon' => $packageImageIcon,
                     'date_start' => new Carbon($bookingDateStart),
                     'date_end' => new Carbon($bookingDateEnd),
+                    'total_price' => $packagePrice*$quantity,
                     'price' => $packagePrice,
-                    'guest' => $guest
+                    'guest' => $guest,
+                    'quantity' => $quantity,
+                    'package_id' => $package_id
                 ];
             })
             ->whenNotEmpty(function ($collection) {
@@ -80,8 +89,12 @@ class Cart extends Model
                         return [
                             'id' => $item['id'],
                             'package_name' => $item['package_name'],
+                            'package_id' => $item['package_id'],
                             'image_icon' => $item['image_icon'],
-                            'price' => $item['price']
+                            'price' => $item['price'],
+                            'total_price' => $item['price']*$item['quantity'],
+                            'quantity' => $item['quantity']
+
                         ];
                     })
                     ->all();
@@ -107,7 +120,7 @@ class Cart extends Model
                     'carts' => $carts,
                     'from' => $from,
                     'to' => $to,
-                    'total_price' => $collection->sum('price'),
+                    'total_price' => $collection->sum('total_price'),
                     'total_guest' => $collection->sum('guest')
                 ];
             }, function ($collection) {

@@ -412,7 +412,7 @@ body {
   font-size: 0.875rem;
   line-height: 1.6;
   font-family: "Poppins", Helvetica, sans-serif;
-  color: #555;
+  color:;
 }
 
 h1,
@@ -421,7 +421,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #333;
+  color: black;
 }
 
 p {
@@ -634,7 +634,7 @@ a.btn_1,
 .btn_1 {
   border: none;
   color: #fff;
-  background: #fc5b62;
+  background: blue;
   outline: none;
   cursor: pointer;
   display: inline-block;
@@ -656,7 +656,7 @@ a.btn_1,
 }
 a.btn_1:hover,
 .btn_1:hover {
-  background: #0054a6;
+  background: ;
   color: #fff;
 }
 a.btn_1.full-width,
@@ -668,7 +668,7 @@ a.btn_1.full-width,
 }
 a.btn_1.full-width.purchase,
 .btn_1.full-width.purchase {
-  background-color: #32a067;
+  background-color: #fc5b62;
 }
 a.btn_1.full-width.purchase:hover,
 .btn_1.full-width.purchase:hover {
@@ -1333,7 +1333,7 @@ header.sticky .hamburger-inner, header.sticky .hamburger-inner::before, header.s
 
 /* Main */
 main {
-  background-color: #f8f8f8;
+  background-color:  rgb(165, 214, 241);
   position: relative;
   z-index: 1;
 }
@@ -1536,7 +1536,7 @@ ul#footer-selector li {
 ul#additional_links {
   margin: 0;
   padding: 8px 0 0 0;
-  color: #555;
+  color: white;
   font-size: 13px;
   font-size: 0.8125rem;
   float: right;
@@ -2540,7 +2540,7 @@ video {
   -moz-border-radius: 0 3px 3px 0;
   -ms-border-radius: 0 3px 3px 0;
   border-radius: 0 3px 3px 0;
-  background-color: #fc5b62;
+  background-color: blue;
   margin-right: -1px;
 }
 @media (max-width: 991px) {
@@ -2553,7 +2553,7 @@ video {
   }
 }
 .custom-search-input-2 input[type='submit']:hover {
-  background-color: #FFC107;
+  background-color: #fc5b62;
   color: #222;
 }
 .custom-search-input-2.inner {
@@ -2841,7 +2841,7 @@ video {
 
 .owl-theme .owl-dots .owl-dot.active span,
 .owl-theme .owl-dots .owl-dot:hover span {
-  background: #fc5b62 !important;
+  background: blue !important;
 }
 
 .owl-theme .owl-dots .owl-dot span {
@@ -3395,7 +3395,7 @@ a.box_feat h3 {
   color: #999;
 }
 .box_grid .price strong {
-  color: #32a067;
+  color: #fc5b62;
 }
 .box_grid a.wish_bt {
   position: absolute;
@@ -5285,7 +5285,8 @@ span.infobox_rate {
 
 .table.cart-list th,
 .table.options_cart th {
-  background-color: #fff;
+  background-color: blue;
+  color: white;
   text-transform: uppercase;
   font-weight: 600;
   border: 0;
@@ -7534,7 +7535,7 @@ a.address:hover {
 }
 
 .bg_color_1 {
-  background-color: #fff;
+  background-color: white;
 }
 
 .box_1 {

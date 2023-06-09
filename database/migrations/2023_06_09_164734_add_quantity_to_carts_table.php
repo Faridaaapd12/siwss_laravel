@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->string('phone_number');
+        Schema::table('carts', function (Blueprint $table) {
+            $table->integer('quantity');
         });
     }
 
@@ -25,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('carts', function (Blueprint $table) {
+            //
+        });
     }
 };

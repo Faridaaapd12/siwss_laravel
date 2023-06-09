@@ -32,7 +32,7 @@
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <style>
         .hero_in.tours:before {
-            background: url({{ asset('img/Siwss.jpg') }}) center center no-repeat;
+            background: url({{ asset('img/Paket_2.PNG') }}) center center no-repeat;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -92,8 +92,7 @@
                             </div>
                         </div>
                         <div class="col-lg-4">
-                            <input type="submit" class="btn_search" value="Cari
-                            ">
+                            <input type="submit" class="btn_search" value="Cari">
                         </div>
                     </div>
                     <!-- /row -->

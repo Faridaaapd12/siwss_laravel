@@ -88,6 +88,12 @@
                                                 Harga
                                             </th>
                                             <th>
+                                                Jumlah
+                                            </th>
+                                            <th>
+                                                Total 
+                                            </th>
+                                            <th>
                                                 Opsi
                                             </th>
                                         </tr>
@@ -101,8 +107,25 @@
                                                     </div>
                                                     <span class="item_cart">{{ $cart['package_name'] }}</span>
                                                 </td>
-                                                <td>
+                                                <td> 
                                                     <strong>Rp. {{ $cart['price'] }}</strong>
+                                                </td>
+                                                <td>
+                                                    <form action="{{ url('/cart/min') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $cart['package_id'] }}">
+                                                    <button id="minus" data-inline="true">-</button>
+                                                    </form>
+                                                    <strong>{{ $cart['quantity'] }}</strong>
+                                                    <form action="{{ url('/cart/add') }}" method="post">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{ $cart['package_id'] }}">
+                                                    <input type="hidden" name="quantity" value="1">
+                                                    <button id="plus" type="submit">+</button>
+                                                    </form>
+                                                </td>
+                                                <td> 
+                                                    <strong>Rp. {{ $cart['total_price'] }}</strong>
                                                 </td>
                                                 <td class="options" style="width:5%; text-align:center;">
                                                     <a href="#0" onclick="deletecart('{{ url('/cart1/delete/' . $cart['id']) }}')"><i class="icon-trash"></i></a>
@@ -133,9 +156,9 @@
 
                         <aside class="col-lg-4" id="sidebar">
                             <div class="box_detail">
-                                {{-- <div id="total_cart">
-									Total <span class="float-right">Rp.{{$carts['total_price']}}</span>
-								</div> --}}
+                                    <div id="total_cart">
+                                        Total <span class="float-right">Rp.{{$carts['total_price']}}</span>
+                                    </div>
                                 {{-- <ul class="cart_details">
 									<li>From <span>{{$carts['from']}}</span></li>
 									<li>To <span>{{$carts['to']}}</span></li>
@@ -227,7 +250,7 @@
                         data: result,
                         success: function(resultTransaction) {
                             console.log(resultTransaction)
-                            window.location.href = "{{ url('/invoice') }}"
+                            window.location.href = "{{ url('/history_order') }}"
                         },
                         error: function(resultTransaction) {
                             console.log(resultTransaction)

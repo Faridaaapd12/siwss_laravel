@@ -118,7 +118,7 @@
                                     </a>
                                 </figure>
                                 <div class="wrapper">
-                                    <h3><a href="{{ route('package-detail') }}">{{ $package['package_name'] }}</a></h3>
+                                    <h3><a href="{{ route('package-detail.show', $package['id']) }}">{{ $package['package_name'] }}</a></h3>
                                     <p>{{ $package['description'] }}</p>
                                     <span class="price"> <strong>Rp {{ $package['price'] }}</strong> /per
                                         Orang</span>
@@ -150,7 +150,7 @@
                 </div>
                 <div class="grid">
                     <ul class="magnific-gallery">
-                        <li>
+                        <li style="margin: 20px">
                             <figure>
                                 <img src="{{ asset('img/warung.jpg') }}" alt="">
                                 <figcaption>
@@ -163,7 +163,7 @@
                                 </figcaption>
                             </figure>
                         </li>
-                        <li>
+                        <li style="margin: 20px">
                             <figure>
                                 <img src="img/peresmian.jpg" alt="">
                                 <figcaption>
@@ -176,7 +176,7 @@
                                 </figcaption>
                             </figure>
                         </li>
-                        <li>
+                        <li style="margin: 20px">
                             <figure>
                                 <img src="img/Pemancingan.jpg" alt="">
                                 <figcaption>
@@ -189,7 +189,7 @@
                                 </figcaption>
                             </figure>
                         </li>
-                        <li>
+                        <li style="margin: 20px">
                             <figure>
                                 <img src="img/PetikLaut.jpg" alt="">
                                 <figcaption>
@@ -202,7 +202,7 @@
                                 </figcaption>
                             </figure>
                         </li>
-                        <li>
+                        <li style="margin: 20px">
                             <figure>
                                 <img src="img/Religi.jpg" alt="">
                                 <figcaption>
@@ -215,7 +215,7 @@
                                 </figcaption>
                             </figure>
                         </li>
-                        <li>
+                        <li style="margin: 20px">
                             <figure>
                                 <img src="img/kalitekung.jpg" alt="">
                                 <figcaption>
@@ -231,19 +231,12 @@
                         </li>
                     </ul>
                 </div>
-
             </div>
-
         </main>
-
         @extends('layout.footer')
-
-
     </div>
 
     @extends('layout.signinpop')
-
-
     <div id="toTop"></div>
 
     <script src="{{ asset('js/common_scripts.js') }}"></script>
@@ -299,11 +292,9 @@
 
     
 <!-- You can use latest version of jQuery  -->
-/* <script src="jquery-1.9.1.min.js"></script> */
 <script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>     
 <script src="https://cdn.jsdelivr.net/npm/owl.carousel@2.3.4/dist/owl.carousel.min.js"></script>
 <!-- Include js plugin -->
-/* <script src="assets/owl-carousel/owl.carousel.js"></script> */
 
 <script>
     $(document).ready(function() {

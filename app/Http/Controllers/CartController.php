@@ -55,17 +55,25 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
+        // dd($request);
         $id = $request->input('id');
         $textDates = $request->input('dates');
         $from = $request->input('from');
         $to = $request->input('to');
-        $guest = intval($request->input('guest'));
+        $quantity = intval($request->input('quantity'));
 
         $startDay = new Carbon(explode(" > ", $textDates)[0]);
         // $endDay = new Carbon(explode(" > ", $textDates)[1]);
         $startTime = new Carbon($from);
         $endTime = new Carbon($to);
+        // cek keranjang
+        $cekKeranjang = Cart::where('package_id',$id)->count();
 
+        if ($cekKeranjang > 0) {
+            $cart = Cart::where('package_id',$id)->first();
+            $cart->quantity = $cart->quantity + $quantity ;
+            
+        }else{
         $cart = new Cart();
         $cart->package_id = $id;
         $cart->user_id = auth()->user()->id;
@@ -73,8 +81,28 @@ class CartController extends Controller
         $cart->booking_day_end = null;
         $cart->booking_time_start = $startTime;
         $cart->booking_time_end = $endTime;
-        $cart->attendant = $guest;
+        $cart->quantity = $quantity;
+        }
         $cart->save();
+
+        return redirect("/cart1");
+    }
+
+    public function minToCart(Request $request)
+    {
+        // dd($request);
+        $id = $request->input('id');
+        
+        $cekKeranjang = Cart::where('package_id',$id)->get()->first();
+        // dd($cekKeranjang['quantity']);
+        if ($cekKeranjang['quantity'] == 1) {
+            $cart = Cart::where('package_id',$id)->first();
+            $cart->delete();
+        }else{
+            $cart = Cart::where('package_id',$id)->first();
+            $cart->quantity -=1;
+            $cart->save();
+        }
 
         return redirect("/cart1");
     }

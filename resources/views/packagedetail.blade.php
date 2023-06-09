@@ -34,7 +34,7 @@
 
     <style>
         .hero_in.tours_detail:before {
-            background: url({{ asset($package->thumbnail) }} ) center center no-repeat;
+            background: url({{ asset($package['heroImage']) }} ) center center no-repeat;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -85,7 +85,7 @@
                         </form>
                     </li>
                 @endauth
-                <li><a href="{{ url('/wishlist') }}" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a>
+                <li><a href="{{ url('/wishlist') }}" class="wishlist_bt_top" title="Your wishlist">Favorit Kamu</a>
                 </li>
             </ul>
             <!-- /top_menu -->
@@ -113,12 +113,12 @@
                         <h1 class="fadeInUp"><span></span>DETAIL PAKET</h1>
                     </div>
                     <span class="magnific-gallery">
-                        @foreach ($package->images as $image)
+                        @foreach ($package['packageImages'] as $image)
                             @if ($loop->first)
-                                <a href="{{ asset($image->image_url) }}" class="btn_photos"
+                                <a href="{{ asset($image) }}" class="btn_photos"
                                     title="image {{ $loop->index + 1 }}" data-effect="mfp-zoom-in">Lihat Foto</a>
                             @else
-                                <a href="{{ asset($image->image_url) }}" title="image {{ $loop->index + 1 }}"
+                                <a href="{{ asset($image) }}" title="image {{ $loop->index + 1 }}"
                                     data-effect="mfp-zoom-in"></a>
                             @endif
                         @endforeach
@@ -146,87 +146,67 @@
                             </section>
                             <!-- /section -->
 
-                            {{-- <section id="reviews">
-                                <h2>Reviews</h2>
-                                <div class="reviews-container">
-                                    <div class="row">
-                                        <div class="col-lg-3">
-                                            <div id="review_summary">
-                                                <strong>{{ $package['averageRating'] }}</strong>
-                                                <em>Superb</em>
-                                                <small>Based on {{ $package['ratingCount'] }} reviews</small>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-9">
-                                            <div class="row">
-                                                <div class="col-lg-10 col-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar"
-                                                            style="width: {{ $package['ratingPercentage']['5'] }}%"
-                                                            aria-valuenow="{{ $package['ratingPercentage']['5'] }}"
-                                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-3"><small><strong>5 stars</strong></small>
-                                                </div>
-                                            </div>
-                                            <!-- /row -->
-                                            <div class="row">
-                                                <div class="col-lg-10 col-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar"
-                                                            style="width: {{ $package['ratingPercentage']['4'] }}%"
-                                                            aria-valuenow="{{ $package['ratingPercentage']['4'] }}"
-                                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-3"><small><strong>4 stars</strong></small>
-                                                </div>
-                                            </div>
-                                            <!-- /row -->
-                                            <div class="row">
-                                                <div class="col-lg-10 col-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar"
-                                                            style="width: {{ $package['ratingPercentage']['3'] }}%"
-                                                            aria-valuenow="{{ $package['ratingPercentage']['3'] }}"
-                                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-3"><small><strong>3 stars</strong></small>
-                                                </div>
-                                            </div>
-                                            <!-- /row -->
-                                            <div class="row">
-                                                <div class="col-lg-10 col-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar"
-                                                            style="width: {{ $package['ratingPercentage']['2'] }}%"
-                                                            aria-valuenow="{{ $package['ratingPercentage']['2'] }}"
-                                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-3"><small><strong>2 stars</strong></small>
-                                                </div>
-                                            </div>
-                                            <!-- /row -->
-                                            <div class="row">
-                                                <div class="col-lg-10 col-9">
-                                                    <div class="progress">
-                                                        <div class="progress-bar" role="progressbar"
-                                                            style="width: {{ $package['ratingPercentage']['1'] }}%"
-                                                            aria-valuenow="{{ $package['ratingPercentage']['1'] }}"
-                                                            aria-valuemin="0" aria-valuemax="100"></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2 col-3"><small><strong>1 stars</strong></small>
-                                                </div>
-                                            </div>
-                                            <!-- /row -->
-                                        </div>
-                                    </div>
-                                    <!-- /row -->
-                                </div>
+                            <section id="reviews">
+							<h2>Reviews</h2>
+							<div class="reviews-container">
+								<div class="row">
+									<div class="col-lg-3">
+										<div id="review_summary">
+											<strong>{{$package['averageRating']}}</strong>
+											<em>Superb</em>
+											<small>Based on {{$package['ratingCount']}} reviews</small>
+										</div>
+									</div>
+									<div class="col-lg-9">
+										<div class="row">
+											<div class="col-lg-10 col-9">
+												<div class="progress">
+													<div class="progress-bar" role="progressbar" style="width: {{$package["ratingPercentage"]["5"]}}%" aria-valuenow="{{$package["ratingPercentage"]["5"]}}" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</div>
+											<div class="col-lg-2 col-3"><small><strong>5 stars</strong></small></div>
+										</div>
+										<!-- /row -->
+										<div class="row">
+											<div class="col-lg-10 col-9">
+												<div class="progress">
+													<div class="progress-bar" role="progressbar" style="width: {{$package["ratingPercentage"]["4"]}}%" aria-valuenow="{{$package["ratingPercentage"]["4"]}}" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</div>
+											<div class="col-lg-2 col-3"><small><strong>4 stars</strong></small></div>
+										</div>
+										<!-- /row -->
+										<div class="row">
+											<div class="col-lg-10 col-9">
+												<div class="progress">
+													<div class="progress-bar" role="progressbar" style="width: {{$package['ratingPercentage']['3']}}%" aria-valuenow="{{$package['ratingPercentage']['3']}}" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</div>
+											<div class="col-lg-2 col-3"><small><strong>3 stars</strong></small></div>
+										</div>
+										<!-- /row -->
+										<div class="row">
+											<div class="col-lg-10 col-9">
+												<div class="progress">
+													<div class="progress-bar" role="progressbar" style="width: {{$package['ratingPercentage']['2']}}%" aria-valuenow="{{$package['ratingPercentage']['2']}}" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</div>
+											<div class="col-lg-2 col-3"><small><strong>2 stars</strong></small></div>
+										</div>
+										<!-- /row -->
+										<div class="row">
+											<div class="col-lg-10 col-9">
+												<div class="progress">
+													<div class="progress-bar" role="progressbar" style="width: {{$package['ratingPercentage']['1']}}%" aria-valuenow="{{$package['ratingPercentage']['1']}}" aria-valuemin="0" aria-valuemax="100"></div>
+												</div>
+											</div>
+											<div class="col-lg-2 col-3"><small><strong>1 stars</strong></small></div>
+										</div>
+										<!-- /row -->
+									</div>
+								</div>
+								<!-- /row -->
+							</div>
 
                                 <hr>
 
@@ -259,11 +239,11 @@
                                     <!-- /review-box -->
                                 </div>
                                 <!-- /review-container -->
-                            </section> --}}
+                            </section> 
                             <!-- /section -->
                             <hr>
 
-                            {{-- <div class="add-review">
+                            <div class="add-review">
                                 <h5>Leave a Review</h5>
                                 <form method="POST" action="{{ url('/package/' . $package['id'] . '/comment') }}">
                                     @csrf
@@ -295,15 +275,15 @@
                                                 </button>
                                             @endauth
 
+                                            </form>
                                             @guest
-                                                <button class="btn-disabled" id="submit-review" disabled>
+                                            <a href="{{ url('/login') }}" class="btn_1">
                                                     Login First
-                                                </button>
+                                            </a>
                                             @endguest
                                         </div>
                                     </div>
-                                </form>
-                            </div> --}}
+                            </div> 
                         </div>
                         <!-- /col -->
 
@@ -314,9 +294,9 @@
                                     <input type="hidden" name="id" value="{{ $package['id'] }}">
                                     <div class="price">
                                         <span>Rp.{{ $package['price'] }}<small></small></span>
-                                        {{-- <div class="score"><span>Good<em>{{ $package['ratingCount'] }}
-                                                    Reviews</em></span><strong>{{ $package['averageRating'] }}</strong>
-                                        </div> --}}
+                                        <div class="score"><span>Good<em>{{ $package['ratingCount'] }}
+                                                    Ulasan</em></span><strong>{{ $package['averageRating'] }}</strong>
+                                        </div> 
                                     </div>
                                     <div class="form-group input-dates">
                                         <input class="form-control" type="text" name="dates"
@@ -334,6 +314,11 @@
                                                 placeholder="Hingga Jam">
                                             <i class="icon_clock time-input-group"></i>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" type="number" name="quantity"
+                                            placeholder="Jumlah">
+                                        <i class="icon_user"></i>
                                     </div>
                                     <button class="btn_1 full-width purchase">Bayar</button>
                                     <a href="#0" class="btn_1 full-width outline wishlist"

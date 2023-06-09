@@ -48,7 +48,7 @@ table { font-size: 75%; table-layout: fixed; width: 100%; }
 table { border-collapse: separate; border-spacing: 2px; }
 th, td { border-width: 1px; padding: 0.5em; position: relative; text-align: center; }
 th, td { border-radius: 0.25em; border-style: solid; }
-th { background: #EEE; border-color: #BBB; }
+th { background: ; border-color: #BBB; }
 td { border-color: #DDD; }
 
 /* page */
@@ -157,13 +157,13 @@ tr:hover .cut { opacity: 1; }
 @page { margin: 0; }
 
 .checkout {
-	background-color: #29c232;
+	background-color: red;
 	color: white;
 	cursor: pointer;
 }
 
 .back {
-	background-color: #ee0082;
+	background-color: blue;
 	color: white;
 	cursor: pointer;
 }
@@ -227,9 +227,9 @@ tr:hover .cut { opacity: 1; }
 					<td><span data-prefix>Rp.</span><span>{{ $invoiceData['total_pay'] }}</span></td>
 				</tr>
 				<tr>
-					<th class="back" onclick="backtocart()">kembali</th>
+					<th class="back" onclick="backtocart()">Kembali</th>
 					<td>
-   					 <button class="btn btn-primary" id="pay-button">Bayar Sekarang</button>
+   					 <button class="btn btn-primary" id="pay-button">Bayar</button>
 					</td>
 				</tr>
 			</table>

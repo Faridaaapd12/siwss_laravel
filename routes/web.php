@@ -48,6 +48,7 @@ Route::get('/packages/sort/all', [SortController::class, 'all']);
 //Route::get('/package/{id}', [PackageDetailController::class, 'index']);
 Route::get('/package', [PackageDetailController::class, 'index'])->name('package-detail');
 Route::get('/package/{id}', [PackageDetailController::class, 'show'])->name('package-detail.show');
+Route::post('/package/{id}/comment', [PackageDetailController::class, 'postReview']);
 
 Route::post('/search', [SearchController::class, 'homeSearch']);
 Route::post('search/grid', [SearchController::class, 'gridSearch']);
@@ -59,6 +60,7 @@ Route::get('/cart1', [CartController::class, 'indexCart1']);
 Route::get('/cart3', [CartController::class, 'indexCart3'])->middleware('auth')->middleware('cart');
 Route::get('/invoice', [InvoiceController::class, 'index']);
 Route::post('/cart/add', [CartController::class, 'addToCart'])->middleware('auth');
+Route::post('/cart/min', [CartController::class, 'minToCart'])->middleware('auth');
 Route::delete('/cart1/delete/{id}', [CartController::class, 'deleteCartItem']);
 
 Route::get('/wishlist', [WishlistController::class, 'index']);
